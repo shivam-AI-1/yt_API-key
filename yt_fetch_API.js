@@ -120,7 +120,8 @@ app.get("/videos", (req, res) => {
   });
   
   // Start Server
-  const PORT = process.env.PORT || 3000; // Render sets PORT in the environment variables
+  const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
   });
+  
