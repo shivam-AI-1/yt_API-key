@@ -5,7 +5,7 @@ const app = express()
 const port = 3000
 
 app.use(cors());
-app.use('/assets', express.static('./public/assets'));
+app.use('/assets', express.static('./Public/assets'));
 
 const alldata = [
     {id:1,image1:'/assets/Thumbnail-1.png',image2:'/assets/Ellipse 4 (1).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
