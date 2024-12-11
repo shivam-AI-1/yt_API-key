@@ -3,9 +3,9 @@ const cors = require("cors");
 
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
-
 
 const videos = [
   {
@@ -110,17 +110,17 @@ const videos = [
 
 
 app.get("/videos", (req, res) => {
-  if (videos.length > 0) {
-    console.log("Videos fetched successfully.");
-    res.status(200).json(videos);
-  } else {
-    console.error("No videos found.");
-    res.status(404).send("Videos not found");
-  }
-});
-
-// Start Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+    if (videos.length > 0) {
+      console.log("Videos fetched successfully.");
+      res.status(200).json(videos);
+    } else {
+      console.error("No videos found.");
+      res.status(404).send("Videos not found");
+    }
+  });
+  
+  // Start Server
+  const PORT = process.env.PORT || 3000; // Render sets PORT in the environment variables
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
