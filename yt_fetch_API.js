@@ -1,127 +1,31 @@
-const express = require("express");
-const cors = require("cors");
+import express from 'express'
+import cors from 'cors'
 
-const app = express();
+const app = express()
+const port = 3000
 
-// Middleware
 app.use(cors());
-app.use(express.json());
+app.use('/assets', express.static('./public/assets'));
 
-const videos = [
-  {
-    thumbnail: "https://raw.githubusercontent.com/PatelNeelMahesh/frontend_tasks/main/02.youtube-clone/assets/Thumbnail-8.png",
-    playButton: "https://raw.githubusercontent.com/PatelNeelMahesh/frontend_tasks/main/02.youtube-clone/assets/Ellipse%201%20(1).png",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-  },
-  {
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-9.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%201%20(4).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-10.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%204%20(3).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{   
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-11.png?raw=true" ,
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%204%20(3).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    cover: "https://raw.githubusercontent.com/PatelNeelMahesh/frontend_tasks/refs/heads/main/02.youtube-clone/assets/live.png",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-4.png?raw=true" ,
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%201%20(1).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-5.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%201%20(4).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-6.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%204%20(3).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-7.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%204%20(3).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%201%20(1).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-1.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%201%20(4).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-2.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%204%20(3).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
-{
-    thumbnail: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Thumbnail-3.png?raw=true",
-    playButton: "https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/Ellipse%204%20(3).png?raw=true",
-    title: "Title of the Video",
-    views: "12,000,000 views",
-    channel: "Channel Name",
-    date: "Date",
-},
+const alldata = [
+    {id:1,image1:'/assets/Thumbnail-1.png',image2:'/assets/Ellipse 4 (1).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:2,image1:'/assets/Thumbnail-2.png',image2:'/assets/Ellipse 4 (2).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:3,image1:'/assets/Thumbnail-3.png',image2:'/assets/Ellipse 4 (3).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:4,image1:'/assets/Thumbnail-4.png',image2:'/assets/Ellipse 4 (4).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:5,image1:'/assets/Thumbnail-5.png',image2:'/assets/Ellipse 4 (5).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:6,image1:'/assets/Thumbnail-6.png',image2:'/assets/Ellipse 4 (6).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:7,image1:'/assets/Thumbnail-7.png',image2:'/assets/Ellipse 4 (2).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:8,image1:'/assets/Thumbnail-8.png',image2:'/assets/Ellipse 4 (2).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:9,image1:'/assets/Thumbnail-9.png',image2:'/assets/Ellipse 4 (2).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:10,image1:'/assets/Thumbnail-10.png',image2:'/assets/Ellipse 4 (2).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:11,image1:'/assets/Thumbnail-11.png',image2:'/assets/Ellipse 4 (2).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"},
+    {id:12,image1:'/assets/Thumbnail.png',image2:'/assets/Ellipse 4 (2).png',txt1:"Bulbuli|Coke Studio Bangla| Season One|Ritu Raj X Nandita",txt2:"Coke Studio Bangla",image3:'/assets/verified.png',txt3:"1.5M views • 2 days ago"}
+]
 
-];
+app.get('/alldata',(req,res)=>{
+    res.json(alldata)
+})
 
-
-app.get("/videos", (req, res) => {
-    if (videos.length > 0) {
-      console.log("Videos fetched successfully.");
-      res.status(200).json(videos);
-    } else {
-      console.error("No videos found.");
-      res.status(404).send("Videos not found");
-    }
-  });
-  
-  // Start Server
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-  });
-  
+app.listen(port,() => {
+    console.log("server is runing go ahead")
+})
